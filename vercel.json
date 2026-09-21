@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/__clerk/:path*",
-      "destination": "https://clerk.berdaya-community.vercel.app/:path*"
+      "destination": "/api/clerk/:path*"
     }
   ]
 }
