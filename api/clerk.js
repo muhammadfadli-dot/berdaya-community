@@ -1,6 +1,6 @@
 import https from 'node:https';
 
-const clerkHost = 'clerk-beige-envelope.clerk.accounts.dev';
+const clerkHost = 'frontend-api.clerk.dev';
 const clerkProxyUrl = 'https://berdaya.dayalima.com/__clerk';
 
 export default function handler(request, response) {
@@ -13,7 +13,7 @@ export default function handler(request, response) {
   headers.host = clerkHost;
   headers['clerk-proxy-url'] = clerkProxyUrl;
   headers['clerk-secret-key'] = process.env.CLERK_SECRET_KEY;
-  headers['x-forwarded-for'] = request.headers['x-forwarded-for'] || '127.0.0.1';
+  headers['x-forwarded-for'] = request.headers['cf-connecting-ip'] || request.headers['x-forwarded-for'] || '127.0.0.1';
 
   const upstream = https.request(
     `https://${clerkHost}/${path}`,
