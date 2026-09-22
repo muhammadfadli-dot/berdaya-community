@@ -1,7 +1,7 @@
 import https from 'node:https';
 
 const clerkHost = 'clerk-beige-envelope.clerk.accounts.dev';
-const clerkProxyUrl = 'https://berdaya-community.vercel.app/__clerk';
+const clerkProxyUrl = 'https://berdaya.dayalima.com/__clerk';
 
 export default function handler(request, response) {
   const path = Array.isArray(request.query.path)
