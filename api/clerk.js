@@ -1,17 +1,17 @@
 import https from 'node:https';
 
 const clerkHost = 'clerk-beige-envelope.clerk.accounts.dev';
+const clerkProxyUrl = 'https://berdaya-community.vercel.app/__clerk';
 
 export default function handler(request, response) {
   const path = Array.isArray(request.query.path)
     ? request.query.path.join('/')
     : request.query.path || '';
   const headers = { ...request.headers };
-  const siteHost = request.headers['x-forwarded-host'] || request.headers.host;
 
   delete headers.host;
   headers.host = clerkHost;
-  headers['clerk-proxy-url'] = `https://${siteHost}/__clerk`;
+  headers['clerk-proxy-url'] = clerkProxyUrl;
   headers['clerk-secret-key'] = process.env.CLERK_SECRET_KEY;
   headers['x-forwarded-for'] = request.headers['x-forwarded-for'] || '127.0.0.1';
 
